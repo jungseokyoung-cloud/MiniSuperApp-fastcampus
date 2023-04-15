@@ -40,11 +40,10 @@ final class FinanceHomeViewController: UIViewController, FinanceHomePresentable,
         
         view.addSubview(stackView)
         
-        // StackView Bottom 추가 X (어차피 추가하면서 길어질꺼여서 ㄱㅊ
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
     

@@ -34,10 +34,12 @@ final class SuperPayDashboardBuilder: Builder<SuperPayDashboardDependency>, Supe
     func build(withListener listener: SuperPayDashboardListener) -> SuperPayDashboardRouting {
         let component = SuperPayDashboardComponent(dependency: dependency)
         let viewController = SuperPayDashboardViewController()
+        
         let interactor = SuperPayDashboardInteractor(
             presenter: viewController,
             dependency: component
         )
+        
         interactor.listener = listener
         return SuperPayDashboardRouter(interactor: interactor, viewController: viewController)
     }
