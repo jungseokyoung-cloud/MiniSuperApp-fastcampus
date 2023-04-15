@@ -1,8 +1,10 @@
 import ModernRIBs
 
-protocol FinanceHomeInteractable: Interactable, SuperPayDashboardListener, CardOnFileDashboardListener {
+protocol FinanceHomeInteractable: Interactable, SuperPayDashboardListener, CardOnFileDashboardListener, AddPaymentMethodListener {
     var router: FinanceHomeRouting? { get set }
     var listener: FinanceHomeListener? { get set }
+    
+    var presentationDelegateProxy: AdativePresentationControllerDelegateProxy { get set }
 }
 
 protocol FinanceHomeViewControllable: ViewControllable {
@@ -17,14 +19,19 @@ final class FinanceHomeRouter: ViewableRouter<FinanceHomeInteractable, FinanceHo
     private let cardOnFileDashBoarderBuildable: CardOnFileDashboardBuildable
     private var cardOnFileRouting: Routing?
     
+    private let addPaymentMethodBuildable: AddPaymentMethodBuildable
+    private var addPaymentMethodRouting: Routing?
+    
     init(
         interactor: FinanceHomeInteractable,
         viewController: FinanceHomeViewControllable,
-        superPayDashboardBuilder: SuperPayDashboardBuildable,
-        cardOnFileDashboardBuilder: CardOnFileDashboardBuildable
+        superPayDashboardBuildable: SuperPayDashboardBuildable,
+        cardOnFileDashboardBuildable: CardOnFileDashboardBuildable,
+        addPaymentMethodBuildable: AddPaymentMethodBuildable
     ) {
-        self.superPayDashBoarderBuildable = superPayDashboardBuilder
-        self.cardOnFileDashBoarderBuildable = cardOnFileDashboardBuilder
+        self.superPayDashBoarderBuildable = superPayDashboardBuildable
+        self.cardOnFileDashBoarderBuildable = cardOnFileDashboardBuildable
+        self.addPaymentMethodBuildable = addPaymentMethodBuildable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -51,5 +58,26 @@ final class FinanceHomeRouter: ViewableRouter<FinanceHomeInteractable, FinanceHo
         
         self.cardOnFileRouting = router
         attachChild(router)
+    }
+    
+    func attachAddPaymentMethod() {
+        if addPaymentMethodRouting != nil { return }
+        
+        let router = addPaymentMethodBuildable.build(withListener: interactor)
+        let navigation = NavigationControllerable(root: router.viewControllable)
+        navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
+        viewControllable.present(navigation, animated: true, completion: nil)
+        
+        addPaymentMethodRouting = router
+        attachChild(router)
+    }
+    
+    func detachAddPaymentMethod() {
+        guard let router = addPaymentMethodRouting else { return }
+        
+        viewControllable.dismiss(completion: nil)
+        
+        detachChild(router)
+        addPaymentMethodRouting = nil
     }
 }

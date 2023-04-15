@@ -9,9 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol CardOnFileDashboardPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func didTapAddPaymentMethod()
 }
 
 final class CardOnFileDashboardViewController: UIViewController, CardOnFileDashboardPresentable, CardOnFileDashboardViewControllable {
@@ -57,6 +55,7 @@ final class CardOnFileDashboardViewController: UIViewController, CardOnFileDashb
         return button
     }()
     
+    //TODO: ScrollView로 할 수 있을까?
     private let cardOnFileStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -124,6 +123,6 @@ final class CardOnFileDashboardViewController: UIViewController, CardOnFileDashb
     
     @objc
     private func addButtonDidTap() {
-        
+        listener?.didTapAddPaymentMethod()
     }
 }

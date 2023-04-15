@@ -3,6 +3,8 @@ import ModernRIBs
 protocol FinanceHomeRouting: ViewableRouting {
     func attachSuperPayDashboard()
     func attachCardOnFileDashboard()
+    func attachAddPaymentMethod()
+    func detachAddPaymentMethod()
 }
 
 protocol FinanceHomePresentable: Presentable {
@@ -14,16 +16,20 @@ protocol FinanceHomeListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>, FinanceHomeInteractable, FinanceHomePresentableListener {
+final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>, FinanceHomeInteractable, FinanceHomePresentableListener, AdativePresentationControllerDelegate {
     
     weak var router: FinanceHomeRouting?
     weak var listener: FinanceHomeListener?
     
+    var presentationDelegateProxy: AdativePresentationControllerDelegateProxy
+    
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: FinanceHomePresentable) {
+        self.presentationDelegateProxy = AdativePresentationControllerDelegateProxy()
         super.init(presenter: presenter)
         presenter.listener = self
+        self.presentationDelegateProxy.delegate = self
     }
     
     override func didBecomeActive() {
@@ -33,8 +39,26 @@ final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>
         router?.attachCardOnFileDashboard()
     }
     
+    //MARK: - CardOnFileDashboardListener
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func presentationControllerDidDismiss() {
+        router?.detachAddPaymentMethod()
+    }
+    
+    //MARK: - AddPaymentMethodListener
+    func cardOnFileDashBoardDidTapAddPaymentMethod() {
+        router?.attachAddPaymentMethod()
+    }
+    
+    func addPaymentMethodDidTapClose() {
+        router?.detachAddPaymentMethod()
+    }
+    
+    func addPaymentMethodDidAddCard(payment: PaymentMethod) {
+        router?.detachAddPaymentMethod()
     }
 }
