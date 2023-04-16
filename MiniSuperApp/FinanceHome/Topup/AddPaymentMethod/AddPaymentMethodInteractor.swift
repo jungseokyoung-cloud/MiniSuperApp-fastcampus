@@ -59,7 +59,7 @@ final class AddPaymentMethodInteractor: PresentableInteractor<AddPaymentMethodPr
     }
     
     func didTapConfirm(with number: String, cvc: String, expiry: String) {
-        let info = AddPaymentMethodInfo(number: number, cvc: cvc, sexpiration: expiry)
+        let info = AddPaymentMethodInfo(number: number, cvc: cvc, expiration: expiry)
         
         dependency.cardOnFileRepository.addCard(info: info).sink(
             receiveCompletion: { _ in },

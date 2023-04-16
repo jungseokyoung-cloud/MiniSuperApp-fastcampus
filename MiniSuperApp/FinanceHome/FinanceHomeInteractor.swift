@@ -5,6 +5,8 @@ protocol FinanceHomeRouting: ViewableRouting {
     func attachCardOnFileDashboard()
     func attachAddPaymentMethod()
     func detachAddPaymentMethod()
+    func attachTopup()
+    func detachTopup()
 }
 
 protocol FinanceHomePresentable: Presentable {
@@ -21,7 +23,7 @@ final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>
     weak var router: FinanceHomeRouting?
     weak var listener: FinanceHomeListener?
     
-    var presentationDelegateProxy: AdativePresentationControllerDelegateProxy
+    let presentationDelegateProxy: AdativePresentationControllerDelegateProxy
     
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
@@ -60,5 +62,13 @@ final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>
     
     func addPaymentMethodDidAddCard(payment: PaymentMethod) {
         router?.detachAddPaymentMethod()
+    }
+    
+    func superPayDashboardDidTapTopup() {
+        router?.attachTopup()
+    }
+    
+    func topupDidClose() {
+        router?.detachTopup()
     }
 }
