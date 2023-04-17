@@ -51,6 +51,7 @@ final class TopupRouter: Router<TopupInteractable>, TopupRouting {
         
         presentInsideNavagivation(router.viewControllable)
         attachChild(router)
+        addPaymentMethodRouting = router
     }
     
     func detachAddPaymentMethod() {

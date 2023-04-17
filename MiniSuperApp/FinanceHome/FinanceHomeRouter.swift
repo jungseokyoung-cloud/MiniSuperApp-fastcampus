@@ -96,6 +96,7 @@ final class FinanceHomeRouter: ViewableRouter<FinanceHomeInteractable, FinanceHo
     
     func detachTopup() {
         guard let router = topupRouting else { return }
+        
         detachChild(router)
         topupRouting = nil
     }
