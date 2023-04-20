@@ -9,7 +9,7 @@ import UIKit
 import RIBsUtil
 
 public extension UIViewController {
-    public func setupNavigationItem(with buttonType: DismissButtonType, target: Any?, action: Selector?) {
+    func setupNavigationItem(with buttonType: DismissButtonType, target: Any?, action: Selector?) {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(
                 systemName: buttonType.iconSystemName,
