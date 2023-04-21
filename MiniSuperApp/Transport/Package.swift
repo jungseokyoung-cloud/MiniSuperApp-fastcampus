@@ -6,11 +6,14 @@ import PackageDescription
 let package = Package(
     name: "Transport",
     platforms: [.iOS(.v14)],
-
+    
     products: [
         .library(
             name: "TransportHome",
             targets: ["TransportHome"]),
+        .library(
+            name: "TransportHomeImp",
+            targets: ["TransportHomeImp"]),
     ],
     
     dependencies: [
@@ -24,6 +27,14 @@ let package = Package(
             name: "TransportHome",
             dependencies: [
                 "ModernRIBs",
+               
+            ]
+        ),
+        .target(
+            name: "TransportHomeImp",
+            dependencies: [
+                "ModernRIBs",
+                "TransportHome",
                 .product(name: "RIBsUtil", package: "Platform"),
                 .product(name: "SuperUI", package: "Platform"),
                 .product(name: "FinanceRepository", package: "Finance"),
