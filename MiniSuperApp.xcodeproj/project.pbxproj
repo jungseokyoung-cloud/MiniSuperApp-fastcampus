@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE0E1CEB29F2D6A10007F36F /* AppRootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E1CEA29F2D6A10007F36F /* AppRootComponent.swift */; };
 		CE0E1CED29F2D7270007F36F /* TransportHomeImp in Frameworks */ = {isa = PBXBuildFile; productRef = CE0E1CEC29F2D7270007F36F /* TransportHomeImp */; };
+		CE0E1CEF29F2DAB20007F36F /* TopupImp in Frameworks */ = {isa = PBXBuildFile; productRef = CE0E1CEE29F2DAB20007F36F /* TopupImp */; };
 		CEB0336A29F18539000CC868 /* AppHome in Frameworks */ = {isa = PBXBuildFile; productRef = CEB0336929F18539000CC868 /* AppHome */; };
 		CEB0336C29F18640000CC868 /* ProfileHome in Frameworks */ = {isa = PBXBuildFile; productRef = CEB0336B29F18640000CC868 /* ProfileHome */; };
 		CEB7D14429F181080014D9DF /* FinanceHome in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7D14329F181080014D9DF /* FinanceHome */; };
@@ -61,6 +62,7 @@
 				CEEE9C3D29F137ED0087B9AA /* CombineUtil in Frameworks */,
 				CEB0336C29F18640000CC868 /* ProfileHome in Frameworks */,
 				CE0E1CED29F2D7270007F36F /* TransportHomeImp in Frameworks */,
+				CE0E1CEF29F2DAB20007F36F /* TopupImp in Frameworks */,
 				CEB8AE4B29F13A5100EEA219 /* Topup in Frameworks */,
 				CECA6D2929F137AC0065D389 /* FinanceEntity in Frameworks */,
 				CEEE9C4129F137ED0087B9AA /* SuperUI in Frameworks */,
@@ -177,6 +179,7 @@
 				CEB0336929F18539000CC868 /* AppHome */,
 				CEB0336B29F18640000CC868 /* ProfileHome */,
 				CE0E1CEC29F2D7270007F36F /* TransportHomeImp */,
+				CE0E1CEE29F2DAB20007F36F /* TopupImp */,
 			);
 			productName = SuperRedApp;
 			productReference = F5829F5526DB2BC400BFA8CD /* MiniSuperApp.app */;
@@ -457,6 +460,10 @@
 		CE0E1CEC29F2D7270007F36F /* TransportHomeImp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TransportHomeImp;
+		};
+		CE0E1CEE29F2DAB20007F36F /* TopupImp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TopupImp;
 		};
 		CEB0336929F18539000CC868 /* AppHome */ = {
 			isa = XCSwiftPackageProductDependency;

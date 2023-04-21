@@ -7,14 +7,16 @@ import TransportHome
 public protocol TransportHomeDependency: Dependency {
     var cardOnFileRepository: CardOnFileRepositry { get }
     var superPayRepository: SuperPayRepository { get }
+    var topupBuildable: TopupBuildable { get }
 }
 
-final class TransportHomeComponent: Component<TransportHomeDependency>, TransportHomeInteractorDependency, TopupDependency {
+final class TransportHomeComponent: Component<TransportHomeDependency>, TransportHomeInteractorDependency {
     var topupBaseViewController: ViewControllable
     var cardOnFileRepository: CardOnFileRepositry { dependency.cardOnFileRepository }
     var superPayRepository: SuperPayRepository { dependency.superPayRepository }
     var superPayBalance: ReadOnlyCurrentValuePublisher<Double> { superPayRepository.balance }
-    
+    var topupBuildable: TopupBuildable { dependency.topupBuildable }
+
     init(
         dependency: TransportHomeDependency,
         topupBaseViewController: ViewControllable
@@ -44,12 +46,10 @@ public final class TransportHomeBuilder: Builder<TransportHomeDependency>, Trans
         let interactor = TransportHomeInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         
-        let topUpBuilder = TopupBuilder(dependency: component)
-        
         return TransportHomeRouter(
             interactor: interactor,
             viewController: viewController,
-            topupBuildable: topUpBuilder
+            topupBuildable: component.topupBuildable
         )
     }
 }
