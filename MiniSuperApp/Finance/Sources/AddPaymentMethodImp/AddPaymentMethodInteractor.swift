@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import AddPaymentMethod
 import FinanceRepository
 import FinanceEntity
 import Combine
@@ -17,11 +18,6 @@ protocol AddPaymentMethodRouting: ViewableRouting {
 protocol AddPaymentMethodPresentable: Presentable {
     var listener: AddPaymentMethodPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
-}
-
-public protocol AddPaymentMethodListener: AnyObject {
-    func addPaymentMethodDidTapClose()
-    func addPaymentMethodDidAddCard(payment: PaymentMethod)
 }
 
 protocol AddPaymentMethodInteractorDependency {

@@ -10,6 +10,7 @@
 		CE0E1CEB29F2D6A10007F36F /* AppRootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E1CEA29F2D6A10007F36F /* AppRootComponent.swift */; };
 		CE0E1CED29F2D7270007F36F /* TransportHomeImp in Frameworks */ = {isa = PBXBuildFile; productRef = CE0E1CEC29F2D7270007F36F /* TransportHomeImp */; };
 		CE0E1CEF29F2DAB20007F36F /* TopupImp in Frameworks */ = {isa = PBXBuildFile; productRef = CE0E1CEE29F2DAB20007F36F /* TopupImp */; };
+		CE0E1CF129F2E0140007F36F /* AddPaymentMethodImp in Frameworks */ = {isa = PBXBuildFile; productRef = CE0E1CF029F2E0140007F36F /* AddPaymentMethodImp */; };
 		CEB0336A29F18539000CC868 /* AppHome in Frameworks */ = {isa = PBXBuildFile; productRef = CEB0336929F18539000CC868 /* AppHome */; };
 		CEB0336C29F18640000CC868 /* ProfileHome in Frameworks */ = {isa = PBXBuildFile; productRef = CEB0336B29F18640000CC868 /* ProfileHome */; };
 		CEB7D14429F181080014D9DF /* FinanceHome in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7D14329F181080014D9DF /* FinanceHome */; };
@@ -58,6 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CECA6D2529F137410065D389 /* CombineExt in Frameworks */,
+				CE0E1CF129F2E0140007F36F /* AddPaymentMethodImp in Frameworks */,
 				CECA6D2729F137AC0065D389 /* AddPaymentMethod in Frameworks */,
 				CEEE9C3D29F137ED0087B9AA /* CombineUtil in Frameworks */,
 				CEB0336C29F18640000CC868 /* ProfileHome in Frameworks */,
@@ -180,6 +182,7 @@
 				CEB0336B29F18640000CC868 /* ProfileHome */,
 				CE0E1CEC29F2D7270007F36F /* TransportHomeImp */,
 				CE0E1CEE29F2DAB20007F36F /* TopupImp */,
+				CE0E1CF029F2E0140007F36F /* AddPaymentMethodImp */,
 			);
 			productName = SuperRedApp;
 			productReference = F5829F5526DB2BC400BFA8CD /* MiniSuperApp.app */;
@@ -464,6 +467,10 @@
 		CE0E1CEE29F2DAB20007F36F /* TopupImp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TopupImp;
+		};
+		CE0E1CF029F2E0140007F36F /* AddPaymentMethodImp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AddPaymentMethodImp;
 		};
 		CEB0336929F18539000CC868 /* AppHome */ = {
 			isa = XCSwiftPackageProductDependency;

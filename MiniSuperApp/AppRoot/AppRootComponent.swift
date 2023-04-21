@@ -8,6 +8,8 @@
 import ModernRIBs
 import TransportHome
 import TransportHomeImp
+import AddPaymentMethod
+import AddPaymentMethodImp
 import Topup
 import TopupImp
 import FinanceHome
@@ -17,7 +19,7 @@ import FinanceRepository
 import RIBsUtil
 
 
-final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, FinanceHomeDependency, ProfileHomeDependency, TransportHomeDependency, TopupDependency  {
+final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, FinanceHomeDependency, ProfileHomeDependency, TransportHomeDependency, TopupDependency, AddPaymentMethodDependency  {
     
     
     var cardOnFileRepository: CardOnFileRepositry
@@ -29,6 +31,10 @@ final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, F
     
     lazy var topupBuildable: TopupBuildable = {
         return TopupBuilder(dependency: self)
+    }()
+    
+    lazy var addPaymentMethodBuildable: AddPaymentMethodBuildable = {
+        return AddPaymentMethodBuilder(dependency: self)
     }()
     
     var topupBaseViewController: ViewControllable { rootViewController.topViewControllable }
