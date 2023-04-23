@@ -21,6 +21,9 @@ let package = Package(
             name: "TopupImp",
             targets: ["TopupImp"]),
         .library(
+            name: "TopupTestSupport",
+            targets: ["TopupTestSupport"]),
+        .library(
             name: "FinanceHome",
             targets: ["FinanceHome"]),
         .library(
@@ -80,6 +83,12 @@ let package = Package(
             ]
         ),
         .target(
+            name: "TopupTestSupport",
+            dependencies: [
+                "Topup"
+            ]
+        ),
+        .target(
             name: "FinanceHome",
             dependencies: [
                 "AddPaymentMethod",
@@ -121,6 +130,7 @@ let package = Package(
                 "FinanceRepository",
                 "FinanceEntity",
                 "FinanceRepositoryTestSupport",
+                "TopupTestSupport",
                 .product(name: "CombineUtil", package: "Platform")
             ]
         )
