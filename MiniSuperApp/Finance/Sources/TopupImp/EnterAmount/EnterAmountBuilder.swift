@@ -5,7 +5,9 @@
 //  Created by Seok Young Jung on 2023/04/17.
 //
 
+import Foundation
 import ModernRIBs
+import CombineSchedulers
 import CombineUtil
 import FinanceRepository
 import FinanceEntity
@@ -13,11 +15,13 @@ import FinanceEntity
 protocol EnterAmountDependency: Dependency {
     var selectedPaymentMethod: ReadOnlyCurrentValuePublisher<PaymentMethod> { get }
     var superPayRepository: SuperPayRepository { get }
+    var mainQueue: AnySchedulerOf<DispatchQueue> { get }
 }
 
 final class EnterAmountComponent: Component<EnterAmountDependency>, EnterAmountInteractorDependency {
     var selectedPaymentMethod: ReadOnlyCurrentValuePublisher<PaymentMethod> { dependency.selectedPaymentMethod }
     var superPayRepository: SuperPayRepository { dependency.superPayRepository }
+    var mainQueue: AnySchedulerOf<DispatchQueue> { dependency.mainQueue }
 }
 
 // MARK: - Builder

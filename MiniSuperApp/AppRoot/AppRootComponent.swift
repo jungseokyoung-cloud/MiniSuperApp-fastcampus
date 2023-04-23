@@ -7,6 +7,7 @@
 
 import UIKit
 import ModernRIBs
+import CombineSchedulers
 import TransportHome
 import TransportHomeImp
 import AddPaymentMethod
@@ -24,9 +25,9 @@ import RIBsUtil
 
 final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, FinanceHomeDependency, ProfileHomeDependency, TransportHomeDependency, TopupDependency, AddPaymentMethodDependency  {
     
-    
     var cardOnFileRepository: CardOnFileRepositry
     var superPayRepository: SuperPayRepository
+    var mainQueue: AnySchedulerOf<DispatchQueue> { .main }
     
     lazy var transportHomeBuildable: TransportHomeBuildable = {
         return TransportHomeBuilder(dependency: self)

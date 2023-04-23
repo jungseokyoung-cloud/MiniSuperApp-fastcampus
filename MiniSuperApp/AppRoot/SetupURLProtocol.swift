@@ -24,7 +24,7 @@ func setupURLProtocol() {
             "digits": "**** 0101",
             "color": "",
             "isPrimary": false
-        ]
+        ] 
     ]
     
     let addCardResponseData = try! JSONSerialization.data(withJSONObject: addCardResponse, options: [])

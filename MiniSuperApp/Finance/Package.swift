@@ -29,6 +29,9 @@ let package = Package(
         .library(
             name: "FinanceRepository",
             targets: ["FinanceRepository"]),
+        .library(
+            name: "FinanceRepositoryTestSupport",
+            targets: ["FinanceRepositoryTestSupport"]),
     ],
     
     dependencies: [
@@ -55,7 +58,7 @@ let package = Package(
                 "ModernRIBs",
                 .product(name: "RIBsUtil", package: "Platform"),
                 .product(name: "SuperUI", package: "Platform")
-
+                
             ]
         ),
         .target(
@@ -101,7 +104,27 @@ let package = Package(
                 .product(name: "Network", package: "Platform")
             ]
         ),
-
-       
+        .target(
+            name: "FinanceRepositoryTestSupport",
+            dependencies: [
+                "FinanceEntity",
+                "FinanceRepository",
+                .product(name: "CombineUtil", package: "Platform"),
+                .product(name: "Network", package: "Platform")
+            ]
+        ),
+        
+        .testTarget(
+            name: "TopupImpTests",
+            dependencies: [
+                "TopupImp",
+                "FinanceRepository",
+                "FinanceEntity",
+                "FinanceRepositoryTestSupport",
+                .product(name: "CombineUtil", package: "Platform")
+            ]
+        )
+        
+        
     ]
 )
