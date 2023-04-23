@@ -89,10 +89,9 @@ final class EnterAmountInteractor: PresentableInteractor<EnterAmountPresentable>
             receiveCompletion: { [weak self] _ in
                 self?.presenter.stopLoading()
             },
-            receiveValue: { [weak self] _ in
+            receiveValue: { [weak self] value in
                 self?.listener?.enterAmountDidFinishTopup()
-            }
+            }            
         ).store(in: &cancellables)
-        
     }
 }
