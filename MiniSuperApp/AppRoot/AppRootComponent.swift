@@ -5,6 +5,7 @@
 //  Created by Seok Young Jung on 2023/04/21.
 //
 
+import UIKit
 import ModernRIBs
 import TransportHome
 import TransportHomeImp
@@ -12,6 +13,8 @@ import AddPaymentMethod
 import AddPaymentMethodImp
 import Topup
 import TopupImp
+import Network
+import NetworkImp
 import FinanceHome
 import ProfileHome
 import AppHome
@@ -43,12 +46,19 @@ final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, F
     
     init(
         dependency: AppRootDependency,
-        cardOnFileRepository: CardOnFileRepositry,
-        superPayRepository: SuperPayRepository,
         rootViewController: ViewControllable
     ) {
-        self.cardOnFileRepository = cardOnFileRepository
-        self.superPayRepository = superPayRepository
+        let config = URLSessionConfiguration.ephemeral
+        config.protocolClasses = [SuperAppURLProtocol.self]
+        
+        setupURLProtocol()
+        
+        let network = NetworkImp(session: URLSession(configuration: config))
+        
+        self.cardOnFileRepository = CardOnFileRepositoryImp(network: network, baseURL: BaseURL().financeBaseURL)
+        self.cardOnFileRepository.fetch()
+        
+        self.superPayRepository = SuperPayRepositoryImp(network: network, baseURL: BaseURL().financeBaseURL)
         self.rootViewController = rootViewController
         super.init(dependency: dependency)
     }

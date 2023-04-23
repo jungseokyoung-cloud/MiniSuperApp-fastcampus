@@ -5,6 +5,7 @@
 //  Created by jung on 2023/04/15.
 //
 
+import Foundation
 import ModernRIBs
 import AddPaymentMethod
 import FinanceRepository
@@ -25,13 +26,13 @@ protocol AddPaymentMethodInteractorDependency {
 }
 
 final class AddPaymentMethodInteractor: PresentableInteractor<AddPaymentMethodPresentable>, AddPaymentMethodInteractable, AddPaymentMethodPresentableListener {
-
+    
     weak var router: AddPaymentMethodRouting?
     weak var listener: AddPaymentMethodListener?
     
     private let dependency: AddPaymentMethodInteractorDependency
     private var cancellables: Set<AnyCancellable>
-
+    
     init(
         presenter: AddPaymentMethodPresentable,
         dependency: AddPaymentMethodInteractorDependency
@@ -41,12 +42,12 @@ final class AddPaymentMethodInteractor: PresentableInteractor<AddPaymentMethodPr
         super.init(presenter: presenter)
         presenter.listener = self
     }
-
+    
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
     }
-
+    
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
@@ -59,12 +60,14 @@ final class AddPaymentMethodInteractor: PresentableInteractor<AddPaymentMethodPr
     func didTapConfirm(with number: String, cvc: String, expiry: String) {
         let info = AddPaymentMethodInfo(number: number, cvc: cvc, expiration: expiry)
         
-        dependency.cardOnFileRepository.addCard(info: info).sink(
-            receiveCompletion: { _ in },
-            receiveValue: { [weak self] method in
-                self?.listener?.addPaymentMethodDidAddCard(payment: method)
-            }
-        ).store(in: &cancellables)
+        dependency.cardOnFileRepository.addCard(info: info)
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] method in
+                    self?.listener?.addPaymentMethodDidAddCard(payment: method)
+                }
+            ).store(in: &cancellables)
     }
 }
 

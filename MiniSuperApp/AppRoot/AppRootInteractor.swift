@@ -19,8 +19,6 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
   weak var router: AppRootRouting?
   weak var listener: AppRootListener?
   
-  // TODO: Add additional dependencies to constructor. Do not perform any logic
-  // in constructor.
   override init(presenter: AppRootPresentable) {
     super.init(presenter: presenter)
     presenter.listener = self

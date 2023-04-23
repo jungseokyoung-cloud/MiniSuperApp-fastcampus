@@ -97,7 +97,8 @@ let package = Package(
             dependencies: [
                 "CombineExt",
                 "FinanceEntity",
-                .product(name: "CombineUtil", package: "Platform")
+                .product(name: "CombineUtil", package: "Platform"),
+                .product(name: "Network", package: "Platform")
             ]
         ),
 
