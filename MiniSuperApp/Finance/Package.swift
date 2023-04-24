@@ -126,15 +126,17 @@ let package = Package(
         .testTarget(
             name: "TopupImpTests",
             dependencies: [
+                "ModernRIBs",
                 "TopupImp",
-                "FinanceRepository",
-                "FinanceEntity",
-                "FinanceRepositoryTestSupport",
+                "Topup",
                 "TopupTestSupport",
-                .product(name: "CombineUtil", package: "Platform")
+                "FinanceEntity",
+                "FinanceRepository",
+                "FinanceRepositoryTestSupport",
+                .product(name: "CombineUtil", package: "Platform"),
+                .product(name: "RIBsUtil", package: "Platform"),
+                .product(name: "SuperUI", package: "Platform")
             ]
         )
-        
-        
     ]
 )

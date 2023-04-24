@@ -11,7 +11,7 @@ import CombineUtil
 import FinanceEntity
 import Combine
 
-final class CardOnFileRepositoryMock : CardOnFileRepositry {
+public final class CardOnFileRepositoryMock : CardOnFileRepositry {
     
     public var cardOnFileSubject: CurrentValuePublisher<[PaymentMethod]> = .init([])
     public var cardOnFile: ReadOnlyCurrentValuePublisher<[PaymentMethod]> { cardOnFileSubject }

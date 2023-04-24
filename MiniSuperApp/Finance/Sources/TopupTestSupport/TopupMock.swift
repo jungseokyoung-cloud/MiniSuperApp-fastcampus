@@ -8,7 +8,7 @@
 import Foundation
 import Topup
 
-final class TopupListenerMock: TopupListener {
+public final class TopupListenerMock: TopupListener {
     
     public var topupDidCloseCallCount = 0
     public func topupDidClose() {
