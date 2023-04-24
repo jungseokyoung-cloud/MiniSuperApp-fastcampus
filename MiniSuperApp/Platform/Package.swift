@@ -12,6 +12,9 @@ let package = Package(
             name: "RIBsUtil",
             targets: ["RIBsUtil"]),
         .library(
+            name: "RIBsTestSupport",
+            targets: ["RIBsTestSupport"]),
+        .library(
             name: "CombineUtil",
             targets: ["CombineUtil"]),
         .library(
@@ -37,6 +40,12 @@ let package = Package(
     targets: [
         .target(
             name: "RIBsUtil",
+            dependencies: [
+                "ModernRIBs"
+            ]
+        ),
+        .target(
+            name: "RIBsTestSupport",
             dependencies: [
                 "ModernRIBs"
             ]
