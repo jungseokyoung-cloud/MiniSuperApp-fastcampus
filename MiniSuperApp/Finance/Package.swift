@@ -44,6 +44,7 @@ let package = Package(
         .package(name: "ModernRIBs",url: "https://github.com/DevYeom/ModernRIBs", .exact("1.0.1")),
         .package(url: "https://github.com/CombineCommunity/CombineExt", from: "1.0.0"),
         .package(path: "../Platform"),
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.10.0"),
     ],
     
     targets: [
@@ -152,8 +153,9 @@ let package = Package(
                 .product(name: "CombineUtil", package: "Platform"),
                 .product(name: "RIBsUtil", package: "Platform"),
                 .product(name: "SuperUI", package: "Platform"),
-                .product(name: "RIBsTestSupport", package: "Platform")
-
+                .product(name: "RIBsTestSupport", package: "Platform"),
+                .product(name: "PlatformTestSupport", package: "Platform"),
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         )
     ]

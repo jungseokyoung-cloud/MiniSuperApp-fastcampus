@@ -23,7 +23,6 @@ final class EnterAmountPresentableMock: EnterAmountPresentable {
     func updateSelectedPaymentMethod(with viewModel: SelectedPaymentMethodViewModel) {
         updateSelectPaymentMethodCallCount += 1
         updateSelectPaymentMethodViewModel = viewModel
-
     }
     
     var startLoadingCallCount = 0
