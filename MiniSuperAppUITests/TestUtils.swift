@@ -1,3 +1,10 @@
+//
+//  TestUtils.swift
+//  MiniSuperAppUITests
+//
+//  Created by Seok Young Jung on 2023/04/26.
+//
+
 import Foundation
 
 enum TestUtilError: Error {

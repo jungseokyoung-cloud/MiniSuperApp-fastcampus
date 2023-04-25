@@ -38,7 +38,8 @@ let package = Package(
         .package(url: "https://github.com/CombineCommunity/CombineExt", from: "1.0.0"),
         .package(url: "https://github.com/DevYeom/ModernRIBs", exact: "1.0.1"),
         .package(url: "https://github.com/pointfreeco/combine-schedulers", from: "0.9.1"),
-        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.10.0")
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.10.0"),
+        .package(name: "Swifter", url: "https://github.com/httpswift/swifter", .upToNextMajor(from: "1.5.0"))
     ],
     
     targets: [
@@ -58,6 +59,7 @@ let package = Package(
             name: "PlatformTestSupport",
             dependencies: [
                 "ModernRIBs",
+                "Swifter",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
             ]
         ),
