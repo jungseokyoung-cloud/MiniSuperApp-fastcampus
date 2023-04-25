@@ -156,6 +156,10 @@ let package = Package(
                 .product(name: "RIBsTestSupport", package: "Platform"),
                 .product(name: "PlatformTestSupport", package: "Platform"),
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+            ],
+            exclude: [
+                "EnterAmount/__Snapshots__",
+                "CardOnFile/__Snapshots__"
             ]
         )
     ]
